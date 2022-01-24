@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.org.generation.lojagames.model.Categoria;
 import br.org.generation.lojagames.repository.CategoriaRepository;
+import br.org.generation.lojagames.repository.CategoriaRepository2;
 
 @RestController
 @RequestMapping("/categorias")
@@ -27,6 +28,9 @@ public class CategoriaController {
 	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
+	
+	@Autowired
+	private CategoriaRepository2 categoriaRepository2;
 	
 	@GetMapping
 	private ResponseEntity<List<Categoria>> getAll(){

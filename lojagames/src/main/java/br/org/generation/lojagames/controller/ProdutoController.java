@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.org.generation.lojagames.model.Produto;
+import br.org.generation.lojagames.repository.CategoriaRepository2;
 import br.org.generation.lojagames.repository.ProdutoRepository;
 
 @RestController
@@ -27,6 +28,9 @@ public class ProdutoController {
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private CategoriaRepository2 categoriaRepository2;
 	
 	@GetMapping
 	private ResponseEntity <List<Produto>> getAll(){
