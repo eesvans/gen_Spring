@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.org.generation.lojagames.model.Produto;
-import br.org.generation.lojagames.repository.CategoriaRepository2;
 import br.org.generation.lojagames.repository.ProdutoRepository;
 
 @RestController
@@ -29,33 +28,30 @@ public class ProdutoController {
 	@Autowired
 	private ProdutoRepository produtoRepository;
 	
-	@Autowired
-	private CategoriaRepository2 categoriaRepository2;
-	
 	@GetMapping
-	private ResponseEntity <List<Produto>> getAll(){
+	public ResponseEntity <List<Produto>> getAll(){
 		return ResponseEntity.ok(produtoRepository.findAll());
 	}
 	
 	@GetMapping("/{id}")
-	private ResponseEntity<Produto> getById(@PathVariable Long id){
+	public ResponseEntity<Produto> getById(@PathVariable Long id){
 		return produtoRepository.findById(id)
 				.map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
 	@GetMapping("/nome/{nome}")
-	private ResponseEntity<List<Produto>> getByNome(@PathVariable String nome){
+	public ResponseEntity<List<Produto>> getByNome(@PathVariable String nome){
 		return ResponseEntity.ok(produtoRepository.findAllByNomeContainingIgnoreCase(nome));
 	}
 	
 	@PostMapping
-	private ResponseEntity <Produto> postProduto(@Valid @RequestBody Produto produto){
+	public ResponseEntity <Produto> postProduto(@Valid @RequestBody Produto produto){
 		return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto));
 	}
 	
 	@PutMapping
-	private ResponseEntity <Produto> putProduto(@Valid @RequestBody Produto produto){
+	public ResponseEntity <Produto> putProduto(@Valid @RequestBody Produto produto){
 		return produtoRepository.findById(produto.getId())
 				.map(resposta ->{
 					return ResponseEntity.ok().body(produtoRepository.save(produto));
@@ -64,7 +60,7 @@ public class ProdutoController {
 	}
 	
 	@DeleteMapping("/{id}")
-	private ResponseEntity<?> deleteProduto(@PathVariable Long id){
+	public ResponseEntity<?> deleteProduto(@PathVariable Long id){
 		return produtoRepository.findById(id)
 				.map(resposta ->{
 					produtoRepository.deleteById(id);

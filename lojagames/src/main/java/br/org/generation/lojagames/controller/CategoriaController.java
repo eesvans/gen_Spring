@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.org.generation.lojagames.model.Categoria;
 import br.org.generation.lojagames.repository.CategoriaRepository;
-import br.org.generation.lojagames.repository.CategoriaRepository2;
 
 @RestController
 @RequestMapping("/categorias")
@@ -29,33 +28,30 @@ public class CategoriaController {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	
-	@Autowired
-	private CategoriaRepository2 categoriaRepository2;
-	
 	@GetMapping
-	private ResponseEntity<List<Categoria>> getAll(){
+	public ResponseEntity<List<Categoria>> getAll(){
 		return ResponseEntity.ok(categoriaRepository.findAll());
 	}
 	
 	@GetMapping("/{id}")
-	private ResponseEntity<Categoria> getById(@PathVariable Long id){
+	public ResponseEntity<Categoria> getById(@PathVariable Long id){
 		return categoriaRepository.findById(id)
 				.map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
 	@GetMapping("/tipo/{tipo}")
-	private ResponseEntity<List<Categoria>> getByTipo(@PathVariable String tipo){
+	public ResponseEntity<List<Categoria>> getByTipo(@PathVariable String tipo){
 		return ResponseEntity.ok(categoriaRepository.findAllByTipoContainingIgnoreCase(tipo));
 	}
 	
 	@PostMapping
-	private ResponseEntity<Categoria> postCategoria(@Valid @RequestBody Categoria categoria){
+	public ResponseEntity<Categoria> postCategoria(@Valid @RequestBody Categoria categoria){
 		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaRepository.save(categoria));
 	}
 	
 	@PutMapping
-	private ResponseEntity<Categoria> putCategoria(@Valid @RequestBody Categoria categoria){
+	public ResponseEntity<Categoria> putCategoria(@Valid @RequestBody Categoria categoria){
 		return categoriaRepository.findById(categoria.getId())
 				.map(resposta ->{
 					return ResponseEntity.ok().body(categoriaRepository.save(categoria));
@@ -64,7 +60,7 @@ public class CategoriaController {
 	}
 	
 	@DeleteMapping("/{id}")
-	private ResponseEntity<?> deleteCategoria(@PathVariable Long id){
+	public ResponseEntity<?> deleteCategoria(@PathVariable Long id){
 		return categoriaRepository.findById(id)
 				.map(resposta -> {
 					categoriaRepository.deleteById(id);
