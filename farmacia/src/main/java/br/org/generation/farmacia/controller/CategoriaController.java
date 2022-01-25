@@ -59,7 +59,7 @@ public class CategoriaController {
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
-	@DeleteMapping
+	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteCategoria(@PathVariable Long id){
 		return categoriaRepository.findById(id)
 				.map(resposta -> {
