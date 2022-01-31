@@ -1,7 +1,5 @@
 package br.org.generation.lojagames.controller;
 
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,12 +66,5 @@ public class UsuarioController {
 				.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
-	
-	/* Desafio nao completo
-	@GetMapping("/idades")
-	public ResponseEntity<Period> getUsuariosIdades(Usuario usuario){
-		return ResponseEntity.ok(Period.between(LocalDate.now(), usuario.getDataNasc()));
-			
-				
-	}*/
+
 }

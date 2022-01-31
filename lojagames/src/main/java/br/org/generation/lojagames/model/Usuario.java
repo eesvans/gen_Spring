@@ -1,7 +1,6 @@
 package br.org.generation.lojagames.model;
 
 import java.time.LocalDate;
-import java.time.Period;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
