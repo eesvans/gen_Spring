@@ -120,35 +120,12 @@ public class UsuarioControllerTest {
 	@DisplayName("Procurar usuário por ID")
 	public void procurarUsuariosPorId() {
 		
-		Usuario usuarioId1 = usuarioRepository.save(new Usuario(0L, 
+		Usuario usuario = usuarioRepository.save(new Usuario(0L, 
 				"Sabrina Sanches", "sabrina_sanches@email.com.br", "sabrina123", ""));
-		
-		Usuario usuarioId2 = usuarioRepository.save(new Usuario(0L, 
-				"Ricardo Marques", "ricardo_marques@email.com.br", "ricardo123", ""));
 	
 		ResponseEntity<String> resposta = testRestTemplate
 			.withBasicAuth("root", "root")
-			.exchange("/usuarios/"+usuarioId1.getId(), HttpMethod.GET, null, String.class);
-
-		assertEquals(HttpStatus.OK, resposta.getStatusCode());
-	}
-	
-	@Test
-	@Order(6)
-	@DisplayName("Procurar usuário por ID")
-	public void procurarUsuariosPorId2() {
-		
-
-		usuarioService.cadastrarUsuario(new Usuario(0L, 
-				"Ricardo Marques", "ricardo_marques@email.com.br", "ricardo123", ""));
-		
-		usuarioService.cadastrarUsuario(new Usuario(0L, 
-				"Sabrina Sanches", "sabrina_sanches@email.com.br", "sabrina123", ""));
-				
-
-		ResponseEntity<String> resposta = testRestTemplate
-			.withBasicAuth("root", "root")
-			.exchange("/usuarios/1", HttpMethod.GET, null, String.class);
+			.exchange("/usuarios/"+usuario.getId(), HttpMethod.GET, null, String.class);
 
 		assertEquals(HttpStatus.OK, resposta.getStatusCode());
 	}
