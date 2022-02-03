@@ -27,7 +27,7 @@ import br.org.generation.blogpessoal.service.UsuarioService;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UsuarioControllerTest {
-	
+	 
 	@Autowired
 	private TestRestTemplate testRestTemplate;
 
